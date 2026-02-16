@@ -1,0 +1,22 @@
+from abc import ABC, abstractmethod
+from collections.abc import Sequence
+
+from app.domain.models.category import Category
+
+
+class ICategoryRepository(ABC):
+    @abstractmethod
+    async def get_by_id(self, category_id: int) -> Category | None:
+        pass
+
+    @abstractmethod
+    async def get_by_name(self, name: str) -> Category | None:
+        pass
+
+    @abstractmethod
+    async def get_all(self, skip: int = 0, limit: int = 100) -> Sequence[Category]:
+        pass
+
+    @abstractmethod
+    async def create(self, name: str) -> Category:
+        pass
